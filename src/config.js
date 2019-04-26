@@ -11,7 +11,8 @@ const propertyTypes = {
 };
 const buyerTypes = {
   FIRST_TIME: 'first',
-  MOVING_HOUSE: '',
+  MOVING_HOUSE: 'home',
+  INVESTOR: 'investor',
 };
 const ireland = [
   { upto: 1000000, rate: 1 },

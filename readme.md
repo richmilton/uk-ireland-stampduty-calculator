@@ -13,32 +13,47 @@ npm install uk-ireland-stampduty-calculator
 ```javascript
 import stampDutyCalculator from 'uk-ireland-stampduty-calculator';
 
-const { propertyTypes, countries, buyerTypes } = stampDutyCalculator;
+const {
+  propertyTypes, countries, buyerTypes, calculate,
+} = stampDutyCalculator;
 const propertyValue = 1200000;
-const propetyType = propertyTypes.RESIDENTIAL;
+const propertyType = propertyTypes.RESIDENTIAL;
 const country = countries.ENGLAND;
-const buyerType = buyerTypes.FIRST_TIME;
+const buyerType = buyerTypes.MOVING_HOUSE;
 
-const { tax: stampDuty } = stampDutyCalculator.calculate(
+const stampDuty = calculate(
   propertyValue, propertyType, country, buyerType,
 );
 ```
 will return...
 
-```javascript
+```json
 {
-  propertyValue: 1200000,
-  propertyType: 'residential',
-  country: 'england',
-  buyerType: 'first',
-  summaryBands: [{ bandLimit: 125000, taxAdded: 0 },
-     { bandLimit: 250000, taxAdded: 2500 },
-     { bandLimit: 925000, taxAdded: 33750 },
-     { bandLimit: 1500000, taxAdded: 27500 }
+  "propertyValue": 1200000,
+  "propertyType": "residential",
+  "country": "england",
+  "buyerType": "home",
+  "summaryBands": [{ "bandLimit": 125000, "taxAdded": 0 },
+     { "bandLimit": 250000, "taxAdded": 2500 },
+     { "bandLimit": 925000, "taxAdded": 33750 },
+     { "bandLimit": 1500000, "taxAdded": 27500 }
   ],
-  tax: 63750,
-  ok: 'ok'
+  "tax": 63750,
+  "ok": "ok"
 }
 ```
+ ## calculate params
+ | param | values |
+ | --- | --- |
+ | propertyValue | int |
+ | propertyType | propertyTypes.RESIDENTIAL<br/>propertyTypes.COMMERCIAL |
+ | country | countries.ENGLANDL<br/>countries.SCOTLAND<br/>countries.WALES<br/>countries.IRELAND |
+ | buyerType | buyerTypes.FIRST_TIME<br/>buyerTypes.MOVING_HOUSE<br/>buyerTypes.INVESTOR |
+    
+ ## buyerTypes
+ 
+ 
+ ## countries
+
 Used in:
 [https://richmilton.github.io/prop-calc-react/](https://richmilton.github.io/prop-calc-react/)
