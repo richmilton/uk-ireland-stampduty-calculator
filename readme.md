@@ -47,7 +47,7 @@ will return...
  | --- | --- |
  | propertyValue | int |
  | propertyType | propertyTypes.RESIDENTIAL<br/>propertyTypes.COMMERCIAL |
- | country | countries.ENGLANDL<br/>countries.SCOTLAND<br/>countries.WALES<br/>countries.IRELAND |
+ | country | countries.ENGLAND<br/>countries.SCOTLAND<br/>countries.WALES<br/>countries.IRELAND |
  | buyerType | buyerTypes.FIRST_TIME<br/>buyerTypes.MOVING_HOUSE<br/>buyerTypes.INVESTOR |
     
  ## buyerTypes
