@@ -49,11 +49,6 @@ will return...
  | propertyType | propertyTypes.RESIDENTIAL<br/>propertyTypes.COMMERCIAL |
  | country | countries.ENGLAND<br/>countries.SCOTLAND<br/>countries.WALES<br/>countries.IRELAND |
  | buyerType | buyerTypes.FIRST_TIME<br/>buyerTypes.MOVING_HOUSE<br/>buyerTypes.INVESTOR |
-    
- ## buyerTypes
- 
- 
- ## countries
 
 Used in:
 [https://richmilton.github.io/prop-calc-react/](https://richmilton.github.io/prop-calc-react/)
