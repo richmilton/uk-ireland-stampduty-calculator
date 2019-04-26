@@ -43,6 +43,7 @@ will return...
 }
 ```
  ## calculate params
+ 
  | param | values |
  | --- | --- |
  | propertyValue | int |
