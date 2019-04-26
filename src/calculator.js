@@ -9,7 +9,7 @@ const {
 
 const ok = 'ok';
 
-const calculateStampDuty = (propertyValue, propertyType, country, buyerType) => {
+const calculate = (propertyValue, propertyType, country, buyerType) => {
   const onePercentOfVal = (propertyValue / 100);
   let bands = sdltBands[propertyType][country];
   if (
@@ -78,4 +78,4 @@ const calculateStampDuty = (propertyValue, propertyType, country, buyerType) => 
   };
 };
 
-module.exports = calculateStampDuty;
+module.exports = calculate;
