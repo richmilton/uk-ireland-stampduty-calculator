@@ -1,6 +1,6 @@
 {
   "name": "uk-ireland-stampduty-calculator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "stamp duty calculator",
   "main": "index.js",
   "scripts": {
