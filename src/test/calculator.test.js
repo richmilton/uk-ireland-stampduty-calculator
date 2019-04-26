@@ -4,6 +4,7 @@ const { describe } = require('mocha');
 const calculateStampDuty = require('../calculator');
 
 const testValues = [
+  100000,
   200000,
   300000,
   400000,
@@ -18,6 +19,7 @@ const testValues = [
 
 describe('calculateStampDuty()', () => {
   it('should return correct values for first time buyers', () => {
+    console.log( calculateStampDuty(1200000, 'residential', 'england', 'first'));
     expect(calculateStampDuty(250000, 'residential', 'england', 'first').tax).to.be.equal(0);
     expect(calculateStampDuty(350000, 'residential', 'england', 'first').tax).to.be.equal(2500);
     expect(calculateStampDuty(550000, 'residential', 'england', 'first').tax).to.be.equal(17500);
