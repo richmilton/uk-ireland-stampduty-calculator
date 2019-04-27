@@ -11,11 +11,10 @@ npm install uk-ireland-stampduty-calculator
 
 ## usage
 ```javascript
-import stampDutyCalculator from 'uk-ireland-stampduty-calculator';
-
 const {
   propertyTypes, countries, buyerTypes, calculate,
-} = stampDutyCalculator;
+} = require('uk-ireland-stampduty-calculator');
+
 const propertyValue = 1200000;
 const propertyType = propertyTypes.RESIDENTIAL;
 const country = countries.ENGLAND;

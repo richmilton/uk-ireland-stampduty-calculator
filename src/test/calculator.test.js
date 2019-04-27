@@ -1,7 +1,11 @@
 /* eslint-env mocha */
 const { expect } = require('chai');
 const { describe } = require('mocha');
-const calculateStampDuty = require('../calculator');
+const calculate = require('../calculator');
+const { countries,
+  propertyTypes,
+  buyerTypes,
+} = require('../config');
 
 const testValues = [
   100000,
@@ -17,17 +21,28 @@ const testValues = [
   2000000,
 ];
 
-describe('calculateStampDuty()', () => {
-  it('should return correct values for first time buyers', () => {
-    expect(calculateStampDuty(250000, 'residential', 'england', 'first').tax).to.be.equal(0);
-    expect(calculateStampDuty(350000, 'residential', 'england', 'first').tax).to.be.equal(2500);
-    expect(calculateStampDuty(550000, 'residential', 'england', 'first').tax).to.be.equal(17500);
-    expect(calculateStampDuty(170000, 'residential', 'scotland', 'first').tax).to.be.equal(0);
-    expect(calculateStampDuty(250000, 'residential', 'scotland', 'first').tax).to.be.equal(1500);
+describe('calculate()', () => {
+  it('should return full object', () => {
+    const sdResult = calculate(250000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME);
+    expect(sdResult.ok).to.be.equal('ok');
+    expect(sdResult.tax).to.be.equal(0);
+    expect(sdResult.propertyValue).to.be.equal(250000);
+    expect(sdResult.buyerType).to.be.equal('first');
+    expect(sdResult.summaryBands.length).to.be.equal(1);
   });
 });
 
-describe('calculateStampDuty()', () => {
+describe('calculate()', () => {
+  it('should return correct values for first time buyers', () => {
+    expect(calculate(250000, 'residential', 'england', 'first').tax).to.be.equal(0);
+    expect(calculate(350000, 'residential', 'england', 'first').tax).to.be.equal(2500);
+    expect(calculate(550000, 'residential', 'england', 'first').tax).to.be.equal(17500);
+    expect(calculate(170000, 'residential', 'scotland', 'first').tax).to.be.equal(0);
+    expect(calculate(250000, 'residential', 'scotland', 'first').tax).to.be.equal(1500);
+  });
+});
+
+describe('calculate()', () => {
   it('should return correct values for residential', () => {
     const expectedValues = [
       3000,
@@ -43,12 +58,12 @@ describe('calculateStampDuty()', () => {
       213750,
     ];
     testValues.forEach((v, idx) => {
-      expect(calculateStampDuty(v, 'residential', 'england', 'investor').tax).to.be.equal(expectedValues[idx]);
+      expect(calculate(v, 'residential', 'england', 'investor').tax).to.be.equal(expectedValues[idx]);
     });
   });
 });
 
-describe('calculateStampDuty()', () => {
+describe('calculate()', () => {
   it('should return correct values for commercial', () => {
     const expectedValues = [
       0,
@@ -64,12 +79,12 @@ describe('calculateStampDuty()', () => {
       89500,
     ];
     testValues.forEach((v, idx) => {
-      expect(calculateStampDuty(v, 'commercial', 'england', 'investor').tax).to.be.equal(expectedValues[idx]);
+      expect(calculate(v, 'commercial', 'england', 'investor').tax).to.be.equal(expectedValues[idx]);
     });
   });
 });
 
-describe('calculateStampDuty()', () => {
+describe('calculate()', () => {
   it('should return correct values for residential wales', () => {
     const expectedValues = [
       3000,
@@ -85,12 +100,12 @@ describe('calculateStampDuty()', () => {
       231200,
     ];
     testValues.forEach((v, idx) => {
-      expect(calculateStampDuty(v, 'residential', 'wales', 'investor').tax).to.be.equal(expectedValues[idx]);
+      expect(calculate(v, 'residential', 'wales', 'investor').tax).to.be.equal(expectedValues[idx]);
     });
   });
 });
 
-describe('calculateStampDuty()', () => {
+describe('calculate()', () => {
   it('should return correct values for commercial scotland', () => {
     const expectedValues = [
       0,
@@ -106,12 +121,12 @@ describe('calculateStampDuty()', () => {
       98500,
     ];
     testValues.forEach((v, idx) => {
-      expect(calculateStampDuty(v, 'commercial', 'wales', 'investor').tax).to.be.equal(expectedValues[idx]);
+      expect(calculate(v, 'commercial', 'wales', 'investor').tax).to.be.equal(expectedValues[idx]);
     });
   });
 });
 
-describe('calculateStampDuty()', () => {
+describe('calculate()', () => {
   it('should return correct values for residential scotland', () => {
     const expectedValues = [
       3000,
@@ -127,12 +142,12 @@ describe('calculateStampDuty()', () => {
       258350,
     ];
     testValues.forEach((v, idx) => {
-      expect(calculateStampDuty(v, 'residential', 'scotland', 'investor').tax).to.be.equal(expectedValues[idx]);
+      expect(calculate(v, 'residential', 'scotland', 'investor').tax).to.be.equal(expectedValues[idx]);
     });
   });
 });
 
-describe('calculateStampDuty()', () => {
+describe('calculate()', () => {
   it('should return correct values for commercial scotland', () => {
     const expectedValues = [
       0,
@@ -148,7 +163,7 @@ describe('calculateStampDuty()', () => {
       88500,
     ];
     testValues.forEach((v, idx) => {
-      expect(calculateStampDuty(v, 'commercial', 'scotland', 'investor').tax).to.be.equal(expectedValues[idx]);
+      expect(calculate(v, 'commercial', 'scotland', 'investor').tax).to.be.equal(expectedValues[idx]);
     });
   });
 });
