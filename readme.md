@@ -34,15 +34,17 @@ will log...
   "propertyType": "residential",
   "country": "england",
   "buyerType": "home",
-  "summaryBands": [{ "bandLimit": 125000, "taxAdded": 0 },
-     { "bandLimit": 250000, "taxAdded": 2500 },
-     { "bandLimit": 925000, "taxAdded": 33750 },
-     { "bandLimit": 1500000, "taxAdded": 27500 }
+  "summaryBands": [
+    { "bandLimit": 125000, "taxAdded": 0 },
+    { "bandLimit": 250000, "taxAdded": 2500 },
+    { "bandLimit": 925000, "taxAdded": 33750 },
+    { "bandLimit": 1500000, "taxAdded": 27500 }
   ],
   "tax": 63750,
   "ok": "ok"
 }
 ```
+
  ## calculate params
  
  | param | values |

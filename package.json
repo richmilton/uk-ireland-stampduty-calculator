@@ -1,6 +1,6 @@
 {
   "name": "uk-ireland-stampduty-calculator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "stamp duty calculator",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,12 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "nyc": "^14.0.0"
-  }
+  },
+  "keywords": [
+    "stamp",
+    "duty",
+    "sdlt",
+    "ltt",
+    "stampduty"
+  ]
 }
