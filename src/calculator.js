@@ -33,7 +33,6 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
   if (!propertyType || !country) return 0;
 
   for (let idx = 0; idx < bands.length; idx += 1) {
-    // console.log(summaryBands);
     const { rate } = bands[idx];
     const adjustedRate = rate + (buyerType === 'investor' ? (bands[idx].load || 0) : 0);
 

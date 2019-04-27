@@ -84,7 +84,6 @@ const sdltBands = {
   },
 };
 
-// module.exports = sdltBands;
 const config = {
   sdltBands,
   countries,
