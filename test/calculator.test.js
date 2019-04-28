@@ -30,6 +30,12 @@ describe('calculate()', () => {
     expect(sdResult.propertyValue).to.be.equal(2500000);
     expect(sdResult.buyerType).to.be.equal('first');
     expect(sdResult.summaryBands.length).to.be.equal(5);
+    expect(sdResult.summaryBands[0].start).to.be.equal(0);
+    expect(sdResult.summaryBands[0].taxAdded).to.be.equal(0);
+    expect(sdResult.summaryBands[1].taxAdded).to.be.equal(2500);
+    expect(sdResult.summaryBands[2].taxAdded).to.be.equal(33750);
+    expect(sdResult.summaryBands[3].taxAdded).to.be.equal(57500);
+    expect(sdResult.summaryBands[4].taxAdded).to.be.equal(120000);
   });
 });
 
