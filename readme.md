@@ -2,7 +2,7 @@
 
 Calculates stamp duty based on current rules. 
 Handles regional/country variation for commercial and residential property,
-and includes options for first time buyers and homeowners and invesors.
+and includes options for first time buyers and homeowners and investors.
 
 ## install
 ```bash
