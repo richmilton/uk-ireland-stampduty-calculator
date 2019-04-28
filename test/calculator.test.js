@@ -23,7 +23,7 @@ const testValues = [
 
 describe('calculate()', () => {
   it('should return full object', () => {
-    const sdResult = calculate(1200000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME);
+    const sdResult = calculate(2500000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME);
     console.log(sdResult);
     expect(sdResult.ok).to.be.equal('ok');
     expect(sdResult.tax).to.be.equal(213750);
