@@ -15,7 +15,7 @@ const {
   propertyTypes, countries, buyerTypes, calculate,
 } = require('uk-ireland-stampduty-calculator');
 
-const propertyValue = 1200000;
+const propertyValue = 2500000;
 const propertyType = propertyTypes.RESIDENTIAL;
 const country = countries.ENGLAND;
 const buyerType = buyerTypes.MOVING_HOUSE;
@@ -29,18 +29,44 @@ console.log(stampDuty);
 will log...
 
 ```json
-{
-  "propertyValue": 1200000,
+{ 
+  "propertyValue": 2500000,
   "propertyType": "residential",
   "country": "england",
-  "buyerType": "home",
-  "summaryBands": [
-    { "bandLimit": 125000, "taxAdded": 0 },
-    { "bandLimit": 250000, "taxAdded": 2500 },
-    { "bandLimit": 925000, "taxAdded": 33750 },
-    { "bandLimit": 1500000, "taxAdded": 27500 }
+  "buyerType": "first",
+  "summaryBands":[
+     { "start": 0,
+       "end": 125000,
+       "bandAmount": 125000,
+       "adjustedRate": 0,
+       "taxAdded": 0
+     },
+     { "start": 125000,
+       "end": 250000,
+       "bandAmount": 125000,
+       "adjustedRate": 2,
+       "taxAdded": 2500
+     },
+     { "start": 250000,
+       "end": 925000,
+       "bandAmount": 675000,
+       "adjustedRate": 5,
+       "taxAdded": 33750
+     },
+     { "start": 925000,
+       "end": 1500000,
+       "bandAmount": 575000,
+       "adjustedRate": 10,
+       "taxAdded": 57500
+     },
+     { "start": 1500000,
+       "end": 2500000,
+       "bandAmount": 1000000,
+       "adjustedRate": 12,
+       "taxAdded": 120000
+     }
   ],
-  "tax": 63750,
+  "tax": 213750,
   "ok": "ok"
 }
 ```
