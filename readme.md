@@ -35,31 +35,36 @@ will log...
   "country": "england",
   "buyerType": "first",
   "summaryBands":[
-     { "start": 0,
+     {
+       "start": 0,
        "end": 125000,
        "bandAmount": 125000,
        "adjustedRate": 0,
        "taxAdded": 0
      },
-     { "start": 125000,
+     {
+       "start": 125000,
        "end": 250000,
        "bandAmount": 125000,
        "adjustedRate": 2,
        "taxAdded": 2500
      },
-     { "start": 250000,
+     {
+       "start": 250000,
        "end": 925000,
        "bandAmount": 675000,
        "adjustedRate": 5,
        "taxAdded": 33750
      },
-     { "start": 925000,
+     {
+       "start": 925000,
        "end": 1500000,
        "bandAmount": 575000,
        "adjustedRate": 10,
        "taxAdded": 57500
      },
-     { "start": 1500000,
+     {
+       "start": 1500000,
        "end": 2500000,
        "bandAmount": 1000000,
        "adjustedRate": 12,
