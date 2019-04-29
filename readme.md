@@ -86,7 +86,13 @@ will log...
  | buyerType | buyerTypes.FIRST_TIME<br/>buyerTypes.MOVING_HOUSE<br/>buyerTypes.INVESTOR |
 
 Used in:
-[https://richmilton.github.io/prop-calc-react/](https://richmilton.github.io/prop-calc-react/)
+
+[prop-calc-react](https://richmilton.github.io/prop-calc-react/)
+
+[example React implementation](https://richmilton.github.io/stamp-duty-web)
+
+[example React repo](https://github.com/richmilton/stamp-duty-web)
+  
 
 ### License ISC
 
