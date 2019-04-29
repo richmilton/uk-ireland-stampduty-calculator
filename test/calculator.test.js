@@ -36,6 +36,8 @@ describe('calculate()', () => {
     expect(sdResult.summaryBands[2].taxAdded).to.be.equal(33750);
     expect(sdResult.summaryBands[3].taxAdded).to.be.equal(57500);
     expect(sdResult.summaryBands[4].taxAdded).to.be.equal(120000);
+    expect(sdResult.summaryBands[3].bandLimit).to.be.equal(1500000);
+    expect(sdResult.summaryBands[4].bandLimit).to.be.equal(Number.POSITIVE_INFINITY);
   });
 });
 

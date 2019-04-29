@@ -39,7 +39,9 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
 
     bandLimit = bands[idx].upto;
     previousBandLimit = idx > 0 ? bands[idx - 1].upto : 0;
-    bandAmount = propertyValue - previousBandLimit;
+    const fullBandAmount = propertyValue - previousBandLimit;
+    bandAmount = fullBandAmount;
+
 
     if (bandLimit === 'end') { // end and return
       taxAdded = ((onePercentOfVal - (previousBandLimit / 100)) * adjustedRate);
@@ -47,6 +49,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
       summaryBands.push({
         start: previousBandLimit,
         end: propertyValue,
+        bandLimit: Number.POSITIVE_INFINITY,
         bandAmount, adjustedRate, taxAdded
       });
       return {
@@ -64,6 +67,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
       summaryBands.push({
         start: previousBandLimit,
         end: propertyValue,
+        bandLimit,
         bandAmount, adjustedRate, taxAdded
       });
       return {
@@ -76,6 +80,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     summaryBands.push({
       start: previousBandLimit,
       end: bandLimit,
+      bandLimit,
       bandAmount, adjustedRate, taxAdded
     });
     tax += taxAdded;
