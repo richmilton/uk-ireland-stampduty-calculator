@@ -13,14 +13,12 @@
  *
  */
 
- const config = require('./config');
-
 const {
   sdltBands,
   countries: { IRELAND, WALES },
   buyerTypes: { FIRST_TIME, INVESTOR },
   propertyTypes: { RESIDENTIAL },
-} = config;
+} = require('./config');
 
 const ok = 'ok';
 
@@ -38,7 +36,15 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     && buyerType === INVESTOR
     && propertyType === RESIDENTIAL
     && propertyValue <= 40000;
+  const summaryBands = [];
+
+  let tax = 0;
+  let bandLimit;
+  let bandAmount;
+  let previousBandLimit;
+  let taxAdded = 0;
   let bands = sdltBands[propertyType][country];
+
   if (
     buyerType === FIRST_TIME
     && propertyType === RESIDENTIAL
@@ -50,13 +56,6 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
       bands = thresholds;
     }
   }
-
-  let tax = 0;
-  let bandLimit;
-  let bandAmount;
-  let previousBandLimit;
-  let taxAdded = 0;
-  const summaryBands = [];
 
   if (!below40kUKAdditionalProperty) {
 
