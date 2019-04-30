@@ -22,6 +22,15 @@ const testValues = [
 ];
 
 describe('calculate()', () => {
+  it('should return rounded down numbers for floating decimal results', () => {
+    expect(calculate(42067, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(1262);
+    expect(calculate(142066, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(4261);
+    expect(calculate(542524, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(33401);
+    expect(calculate(2042067, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(91603);
+  });
+});
+
+describe('calculate()', () => {
   it('should return 0 for second properties below 40k in england scotland and wales', () => {
     expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(0);
     expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(0);

@@ -71,6 +71,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
           bandLimit: Number.POSITIVE_INFINITY,
           bandAmount, adjustedRate, taxAdded
         });
+        tax = Math.floor(tax);
         return {
           propertyValue, propertyType, country, buyerType, summaryBands, tax, ok
         };
@@ -89,6 +90,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
           bandLimit,
           bandAmount, adjustedRate, taxAdded
         });
+        tax = Math.floor(tax);
         return {
           propertyValue, propertyType, country, buyerType, summaryBands, tax, ok
         };
