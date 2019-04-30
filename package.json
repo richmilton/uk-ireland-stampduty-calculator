@@ -1,9 +1,8 @@
 {
   "name": "uk-ireland-stampduty-calculator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "stamp duty calculator",
   "homepage": "https://github.com/richmilton/uk-ireland-stampduty-calculator",
-  "repository": "https://github.com/richmilton/uk-ireland-stampduty-calculator",
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha"

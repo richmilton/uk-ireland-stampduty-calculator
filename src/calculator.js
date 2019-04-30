@@ -1,4 +1,13 @@
-const config = require('./config');
+/**
+ * Calculator for
+ *  SDLT(England/NI),
+ *  LBTT(Scotland),
+ *  LTT(Wales),
+ *  Stamp Duty(Ireland)
+ * correct for transactions completing after 1 April 2016
+ */
+
+ const config = require('./config');
 
 const {
   sdltBands,
@@ -9,9 +18,20 @@ const {
 
 const ok = 'ok';
 
+/**
+ * returns JSON object
+ * @param {number} propertyValue - int or floating point.
+ * @param {string} propertyType - either propertyTypes.COMMERCIAL or propertyTypes.RESIDENTIAL.
+ * @param {string} country - any of countries.ENGLAND, countries.WALES, countries.SCOTLAND, countries.IRELAND
+ * @param {string} buyerType - any of buyerTypes.FIRST_TIME, buyerTypes.INVESTOR, buyerTypes.MOVING_HOUSE
+ */
+
 const calculate = (propertyValue, propertyType, country, buyerType) => {
   const onePercentOfVal = (propertyValue / 100);
-  const below40kUKInvestor = country !== IRELAND && buyerType === INVESTOR && propertyValue <= 40000;
+  const below40kUKAdditionalProperty = country !== IRELAND
+    && buyerType === INVESTOR
+    && propertyType === RESIDENTIAL
+    && propertyValue <= 40000;
   let bands = sdltBands[propertyType][country];
   if (
     buyerType === FIRST_TIME
@@ -32,7 +52,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
   let taxAdded = 0;
   const summaryBands = [];
 
-  if ( propertyType && country && !below40kUKInvestor) {
+  if (!below40kUKAdditionalProperty) {
 
     for (let idx = 0; idx < bands.length; idx += 1) {
       const {rate} = bands[idx];
@@ -91,7 +111,12 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     propertyType,
     country,
     buyerType,
-    summaryBands,
+    summaryBands: [{ start: 0,
+      end: propertyValue,
+      bandLimit: 40000,
+      bandAmount: 40000,
+      adjustedRate: 0,
+      taxAdded: 0 }],
     tax,
     ok,
   };

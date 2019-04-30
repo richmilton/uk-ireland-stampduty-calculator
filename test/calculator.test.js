@@ -26,6 +26,7 @@ describe('calculate()', () => {
     expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(0);
     expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(0);
     expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(0);
+    expect(calculate(35000, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.INVESTOR).summaryBands[0].bandLimit).to.be.equal(150000);
   });
 });
 

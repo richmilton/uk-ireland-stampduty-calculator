@@ -1,4 +1,6 @@
-const load = 3;
+
+
+const load = 3; // addtional UK property load
 const countries = {
   ENGLAND: 'england',
   SCOTLAND: 'scotland',
