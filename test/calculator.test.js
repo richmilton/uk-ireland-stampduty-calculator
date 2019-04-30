@@ -22,6 +22,14 @@ const testValues = [
 ];
 
 describe('calculate()', () => {
+  it('should return 0 for second properties below 40k in england scotland and wales', () => {
+    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(0);
+    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(0);
+    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(0);
+  });
+});
+
+describe('calculate()', () => {
   it('should return full object', () => {
     const sdResult = calculate(2500000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME);
     console.log(sdResult);

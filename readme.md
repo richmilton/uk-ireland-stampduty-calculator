@@ -76,7 +76,7 @@ will log...
 }
 ```
 
- ## calculate params
+ ## calculate parameters
  
  | param | values |
  | --- | --- |
