@@ -1,10 +1,16 @@
 /**
- * Calculator for
+ * Calculator for residential and commercial
+ *
  *  SDLT(England/NI),
  *  LBTT(Scotland),
  *  LTT(Wales),
  *  Stamp Duty(Ireland)
+ *
  * correct for transactions completing after 1 April 2016
+ * calculations are rounded down in line with
+ *
+ * https://www.tax.service.gov.uk/calculate-stamp-duty-land-tax
+ *
  */
 
  const config = require('./config');
