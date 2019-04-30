@@ -38,6 +38,7 @@ will log...
      {
        "start": 0,
        "end": 125000,
+       "bandLimit": 925000,
        "bandAmount": 125000,
        "adjustedRate": 0,
        "taxAdded": 0
@@ -45,6 +46,7 @@ will log...
      {
        "start": 125000,
        "end": 250000,
+       "bandLimit": 250000,
        "bandAmount": 125000,
        "adjustedRate": 2,
        "taxAdded": 2500
@@ -52,6 +54,7 @@ will log...
      {
        "start": 250000,
        "end": 925000,
+       "bandLimit": 925000,
        "bandAmount": 675000,
        "adjustedRate": 5,
        "taxAdded": 33750
@@ -59,6 +62,7 @@ will log...
      {
        "start": 925000,
        "end": 1500000,
+       "bandLimit": 1500000,
        "bandAmount": 575000,
        "adjustedRate": 10,
        "taxAdded": 57500
@@ -66,6 +70,7 @@ will log...
      {
        "start": 1500000,
        "end": 2500000,
+       "bandLimit": "Infinity",
        "bandAmount": 1000000,
        "adjustedRate": 12,
        "taxAdded": 120000
