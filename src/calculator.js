@@ -24,6 +24,7 @@ const ok = 'ok';
 
 /**
  * returns JSON object
+ *
  * @param {number} propertyValue - int or floating point.
  * @param {string} propertyType - either propertyTypes.COMMERCIAL or propertyTypes.RESIDENTIAL.
  * @param {string} country - any of countries.ENGLAND, countries.WALES, countries.SCOTLAND, countries.IRELAND
@@ -37,7 +38,12 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     && propertyType === RESIDENTIAL
     && propertyValue <= 40000;
   const summaryBands = [];
-
+  const comment = (
+    buyerType === FIRST_TIME
+    && propertyType === RESIDENTIAL
+    && country === WALES
+  ) ?
+    'there is no separate first time buyer exemption in Wales' : '';
   let tax = 0;
   let bandLimit;
   let bandAmount;
@@ -75,7 +81,8 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
           end: propertyValue,
           bandLimit: Number.POSITIVE_INFINITY,
           bandAmount, adjustedRate,
-          taxAdded: Math.floor(taxAdded)
+          taxAdded: Math.floor(taxAdded),
+          comment,
         });
         tax = Math.floor(tax);
         return {
@@ -95,7 +102,8 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
           end: propertyValue,
           bandLimit,
           bandAmount, adjustedRate,
-          taxAdded: Math.floor(taxAdded)
+          taxAdded: Math.floor(taxAdded),
+          comment
         });
         tax = Math.floor(tax);
         return {
@@ -128,6 +136,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
       taxAdded: 0 }],
     tax,
     ok,
+    comment: 'transactions below 40k in UK are exempt from SDLT, LTT & LBTT',
   };
 };
 
