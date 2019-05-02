@@ -82,11 +82,17 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
           bandLimit: Number.POSITIVE_INFINITY,
           bandAmount, adjustedRate,
           taxAdded: Math.floor(taxAdded),
-          comment,
         });
         tax = Math.floor(tax);
         return {
-          propertyValue, propertyType, country, buyerType, summaryBands, tax, ok
+          propertyValue,
+          propertyType,
+          country,
+          buyerType,
+          summaryBands,
+          tax,
+          ok,
+          comment,
         };
       }
       if (propertyValue <= bandLimit) { // return before end
@@ -103,11 +109,17 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
           bandLimit,
           bandAmount, adjustedRate,
           taxAdded: Math.floor(taxAdded),
-          comment
         });
         tax = Math.floor(tax);
         return {
-          propertyValue, propertyType, country, buyerType, summaryBands, tax, ok
+          propertyValue,
+          propertyType,
+          country,
+          buyerType,
+          summaryBands,
+          tax,
+          ok,
+          comment,
         };
       }
       // add the tax rate for the whole band and carry on
