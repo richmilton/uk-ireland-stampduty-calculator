@@ -2,7 +2,7 @@
 
 Calculates stamp duty based on current rules. 
 Handles regional/country variation for commercial and residential property,
-and includes options for first time buyers and homeowners and investors.
+and includes options for first time buyers, homeowners and investors.
 
 ## install
 ```bash
@@ -70,7 +70,7 @@ will log...
      {
        "start": 1500000,
        "end": 2500000,
-       "bandLimit": 2500000,
+       "bandLimit": "+++",
        "bandAmount": 1000000,
        "adjustedRate": 12,
        "taxAdded": 120000

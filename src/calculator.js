@@ -93,14 +93,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
         if (bandLimit === 'end') { // end and return
           taxAdded = ((onePercentOfVal - (previousBandLimit / 100)) * adjustedRate);
           tax += taxAdded;
-          summaryBands.push({
-            start: previousBandLimit,
-            end: propertyValue,
-            bandLimit: propertyValue,
-            bandAmount, adjustedRate,
-            taxAdded: Math.floor(taxAdded),
-          });
-          tax = Math.floor(tax);
+          bandLimit = '+++';
         } else if (propertyValue <= bandLimit) { // return before end
           if (idx === 0) { // below first limit
             taxAdded = (onePercentOfVal * adjustedRate);
@@ -109,15 +102,18 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
             taxAdded = ((onePercentOfVal - (previousBandLimit / 100)) * adjustedRate);
             tax += taxAdded;
           }
-          summaryBands.push({
-            start: previousBandLimit,
-            end: propertyValue,
-            bandLimit,
-            bandAmount, adjustedRate,
-            taxAdded: Math.floor(taxAdded),
-          });
-          tax = Math.floor(tax);
         }
+
+        summaryBands.push({
+          start: previousBandLimit,
+          end: propertyValue,
+          bandLimit,
+          bandAmount, adjustedRate,
+          taxAdded: Math.floor(taxAdded),
+        });
+
+        tax = Math.floor(tax);
+
         return {
           propertyValue,
           propertyType,
