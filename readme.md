@@ -70,7 +70,7 @@ will log...
      {
        "start": 1500000,
        "end": 2500000,
-       "bandLimit": "Infinity",
+       "bandLimit": 2500000,
        "bandAmount": 1000000,
        "adjustedRate": 12,
        "taxAdded": 120000
@@ -81,9 +81,7 @@ will log...
 }
 ```
 
- ## calculate parameters
- 
- | param | values |
+ | parameters | values |
  | --- | --- |
  | propertyValue | int |
  | propertyType | propertyTypes.RESIDENTIAL<br/>propertyTypes.COMMERCIAL |

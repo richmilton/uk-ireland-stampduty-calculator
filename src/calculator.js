@@ -79,7 +79,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
         summaryBands.push({
           start: previousBandLimit,
           end: propertyValue,
-          bandLimit: Number.POSITIVE_INFINITY,
+          bandLimit: propertyValue,
           bandAmount, adjustedRate,
           taxAdded: Math.floor(taxAdded),
         });
