@@ -1,6 +1,6 @@
 
-
 const load = 3; // addtional UK property load
+const percent = String.fromCharCode(37);
 const countries = {
   ENGLAND: 'england',
   SCOTLAND: 'scotland',
@@ -86,11 +86,23 @@ const sdltBands = {
   },
 };
 
+const { limit: englandFirstTimeLimit } = sdltBands[propertyTypes.RESIDENTIAL][buyerTypes.FIRST_TIME][countries.ENGLAND];
+
+const comments = {
+  firstTimeWales: 'there is no separate first time buyer exemption in Wales',
+  under40kUKInvestor: 'all transactions below 40k in UK are exempt from SDLT, LTT & LBTT',
+  UKInvestor: `${load + percent} surcharge is applied`,
+  firstTimeEnglandOverLimit: `properties over ${englandFirstTimeLimit} do not attract first time buyer relief`,
+  EMPTY: '',
+};
+
 const config = {
   sdltBands,
   countries,
   propertyTypes,
   buyerTypes,
+  comments,
+  englandFirstTimeLimit,
 };
 
 module.exports = config;

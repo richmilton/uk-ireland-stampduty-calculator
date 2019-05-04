@@ -18,6 +18,8 @@ const {
   countries: { IRELAND, WALES },
   buyerTypes: { FIRST_TIME, INVESTOR },
   propertyTypes: { RESIDENTIAL },
+  comments,
+  englandFirstTimeLimit,
 } = require('./config');
 
 const ok = 'ok';
@@ -32,38 +34,48 @@ const ok = 'ok';
  */
 
 const calculate = (propertyValue, propertyType, country, buyerType) => {
-  const onePercentOfVal = (propertyValue / 100);
-  const below40kUKAdditionalProperty = country !== IRELAND
+  const isLoaded = country !== IRELAND
     && buyerType === INVESTOR
-    && propertyType === RESIDENTIAL
+    && propertyType === RESIDENTIAL;
+  const below40kUKAdditionalProperty = isLoaded
     && propertyValue <= 40000;
-  const summaryBands = [];
-  const comment = (
-    buyerType === FIRST_TIME
-    && propertyType === RESIDENTIAL
-    && country === WALES
-  ) ?
-    'there is no separate first time buyer exemption in Wales' : '';
+
+  let comment = '';
   let tax = 0;
   let bandLimit;
   let bandAmount;
   let previousBandLimit;
   let taxAdded = 0;
   let bands = sdltBands[propertyType][country];
-
-  if (
-    buyerType === FIRST_TIME
-    && propertyType === RESIDENTIAL
-    && !(new RegExp(`${IRELAND}|${WALES}`)).test(country)
-  ) {
-    const { first } = sdltBands[propertyType];
-    const { limit, thresholds } = first[country];
-    if (limit === -1 || propertyValue <= limit) {
-      bands = thresholds;
-    }
-  }
+  let endReached = false;
 
   if (!below40kUKAdditionalProperty) {
+    const onePercentOfVal = (propertyValue / 100);
+    const isWalesFirst = buyerType === FIRST_TIME
+      && propertyType === RESIDENTIAL
+      && country === WALES;
+    const isEnglandFirstOverLimit = propertyValue > englandFirstTimeLimit;
+    const summaryBands = [];
+
+    if (isWalesFirst) {
+      comment = comments.firstTimeWales;
+    } else if (isLoaded) {
+      comment = comments.UKInvestor;
+    } else if (isEnglandFirstOverLimit) {
+      comment = comments.firstTimeEnglandOverLimit;
+    }
+
+    if (
+      buyerType === FIRST_TIME
+      && propertyType === RESIDENTIAL
+      && !(new RegExp(`${IRELAND}|${WALES}`)).test(country)
+    ) {
+      const { first } = sdltBands[propertyType];
+      const { limit, thresholds } = first[country];
+      if (limit === -1 || propertyValue <= limit) {
+        bands = thresholds;
+      }
+    }
 
     for (let idx = 0; idx < bands.length; idx += 1) {
       const {rate} = bands[idx];
@@ -72,45 +84,37 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
       bandLimit = bands[idx].upto;
       previousBandLimit = idx > 0 ? bands[idx - 1].upto : 0;
       bandAmount = propertyValue - previousBandLimit;
+      endReached = bandLimit === 'end' || propertyValue <= bandLimit;
 
-      if (bandLimit === 'end') { // end and return
-        taxAdded = ((onePercentOfVal - (previousBandLimit / 100)) * adjustedRate);
-        tax += taxAdded;
-        summaryBands.push({
-          start: previousBandLimit,
-          end: propertyValue,
-          bandLimit: propertyValue,
-          bandAmount, adjustedRate,
-          taxAdded: Math.floor(taxAdded),
-        });
-        tax = Math.floor(tax);
-        return {
-          propertyValue,
-          propertyType,
-          country,
-          buyerType,
-          summaryBands,
-          tax,
-          ok,
-          comment,
-        };
-      }
-      if (propertyValue <= bandLimit) { // return before end
-        if (idx === 0) { // below first limit
-          taxAdded = (onePercentOfVal * adjustedRate);
-          tax += taxAdded;
-        } else { // below this limit
+      if (endReached) {
+        if (bandLimit === 'end') { // end and return
           taxAdded = ((onePercentOfVal - (previousBandLimit / 100)) * adjustedRate);
           tax += taxAdded;
+          summaryBands.push({
+            start: previousBandLimit,
+            end: propertyValue,
+            bandLimit: propertyValue,
+            bandAmount, adjustedRate,
+            taxAdded: Math.floor(taxAdded),
+          });
+          tax = Math.floor(tax);
+        } else if (propertyValue <= bandLimit) { // return before end
+          if (idx === 0) { // below first limit
+            taxAdded = (onePercentOfVal * adjustedRate);
+            tax += taxAdded;
+          } else { // below this limit
+            taxAdded = ((onePercentOfVal - (previousBandLimit / 100)) * adjustedRate);
+            tax += taxAdded;
+          }
+          summaryBands.push({
+            start: previousBandLimit,
+            end: propertyValue,
+            bandLimit,
+            bandAmount, adjustedRate,
+            taxAdded: Math.floor(taxAdded),
+          });
+          tax = Math.floor(tax);
         }
-        summaryBands.push({
-          start: previousBandLimit,
-          end: propertyValue,
-          bandLimit,
-          bandAmount, adjustedRate,
-          taxAdded: Math.floor(taxAdded),
-        });
-        tax = Math.floor(tax);
         return {
           propertyValue,
           propertyType,
@@ -135,6 +139,8 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     }
   }
 
+  comment = comments.under40kUKInvestor;
+
   return {
     propertyValue,
     propertyType,
@@ -143,12 +149,12 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     summaryBands: [{ start: 0,
       end: propertyValue,
       bandLimit: 40000,
-      bandAmount: 40000,
+      bandAmount: 0,
       adjustedRate: 0,
       taxAdded: 0 }],
     tax,
     ok,
-    comment: 'transactions below 40k in UK are exempt from SDLT, LTT & LBTT',
+    comment,
   };
 };
 

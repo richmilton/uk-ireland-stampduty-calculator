@@ -5,6 +5,7 @@ const calculate = require('../src/calculator');
 const { countries,
   propertyTypes,
   buyerTypes,
+  comments,
 } = require('../src/config');
 
 const testValues = [
@@ -41,9 +42,12 @@ describe('calculate()', () => {
 });
 
 describe('calculate()', () => {
-  it('should return 0 for second properties below 40k in england scotland and wales', () => {
-    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).comment.length).not.to.be.equal(0);
-    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment.length).not.to.be.equal(0);
+  it('should return correct comments', () => {
+    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.firstTimeWales);
+    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.under40kUKInvestor);
+    expect(calculate(135000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.UKInvestor);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
+    expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.firstTimeEnglandOverLimit);
   });
 });
 
