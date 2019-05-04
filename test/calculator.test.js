@@ -47,6 +47,9 @@ describe('calculate()', () => {
     expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.under40kUKInvestor);
     expect(calculate(135000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.UKInvestor);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
+    expect(calculate(600000, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
+    // expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
+    expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
     expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.firstTimeEnglandOverLimit);
   });
 });

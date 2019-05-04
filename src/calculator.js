@@ -15,7 +15,7 @@
 
 const {
   sdltBands,
-  countries: { IRELAND, WALES },
+  countries: { IRELAND, WALES, ENGLAND },
   buyerTypes: { FIRST_TIME, INVESTOR },
   propertyTypes: { RESIDENTIAL },
   comments,
@@ -51,10 +51,13 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
 
   if (!below40kUKAdditionalProperty) {
     const onePercentOfVal = (propertyValue / 100);
-    const isWalesFirst = buyerType === FIRST_TIME
-      && propertyType === RESIDENTIAL
+    const isFirst = buyerType === FIRST_TIME
+      && propertyType === RESIDENTIAL;
+    const isWalesFirst = isFirst
       && country === WALES;
-    const isEnglandFirstOverLimit = propertyValue > englandFirstTimeLimit;
+    const isEnglandFirstOverLimit = isFirst
+      && country === ENGLAND
+      && propertyValue > englandFirstTimeLimit;
     const summaryBands = [];
 
     if (isWalesFirst) {
