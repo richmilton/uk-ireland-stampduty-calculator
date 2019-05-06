@@ -78,7 +78,8 @@ will log...
   ],
   "tax": 213750,
   "ok": "ok",
-  "comment": "properties over 500000 do not attract first time buyer relief"
+  "comment": "properties over 500000 do not attract first time buyer relief",
+  "taxName": { "long": "stamp duty land tax", "short": "SDLT" }
 }
 ```
 

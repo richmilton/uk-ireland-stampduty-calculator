@@ -6,6 +6,7 @@ const { countries,
   propertyTypes,
   buyerTypes,
   comments,
+  taxNames,
 } = require('../src/config');
 
 const testValues = [
@@ -44,7 +45,7 @@ describe('calculate()', () => {
 describe('calculate()', () => {
   it('should return correct comments', () => {
     expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.firstTimeWales);
-    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.under40kUKInvestor);
+    expect(calculate(35000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.under40kUKInvestor + taxNames[countries.ENGLAND].short);
     expect(calculate(135000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.UKInvestor);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
     expect(calculate(600000, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
@@ -93,10 +94,13 @@ describe('calculate()', () => {
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(2500);
     expect(calculate(350000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(7500);
     expect(calculate(550000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(17500);
+    expect(calculate(550000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('SDLT');
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(500);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(2100);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('LBTT');
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(0);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(2450);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('LTT');
   });
 });
 
@@ -109,6 +113,7 @@ describe('calculate()', () => {
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.IRELAND, buyerTypes.FIRST_TIME).tax).to.be.equal(2500);
     expect(calculate(170000, propertyTypes.COMMERCIAL, countries.IRELAND, buyerTypes.INVESTOR).tax).to.be.equal(1700);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.IRELAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(2500);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.IRELAND, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('stamp duty');
   });
 });
 

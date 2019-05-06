@@ -20,6 +20,7 @@ const {
   propertyTypes: { RESIDENTIAL },
   comments,
   englandFirstTimeLimit,
+  taxNames,
 } = require('./config');
 
 const ok = 'ok';
@@ -34,6 +35,7 @@ const ok = 'ok';
  */
 
 const calculate = (propertyValue, propertyType, country, buyerType) => {
+  const taxName = taxNames[country];
   const isLoaded = country !== IRELAND
     && buyerType === INVESTOR
     && propertyType === RESIDENTIAL;
@@ -51,14 +53,17 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
 
   if (!below40kUKAdditionalProperty) {
     const onePercentOfVal = (propertyValue / 100);
+    const summaryBands = [];
+
     const isFirst = buyerType === FIRST_TIME
       && propertyType === RESIDENTIAL;
+
     const isWalesFirst = isFirst
       && country === WALES;
+
     const isEnglandFirstOverLimit = isFirst
       && country === ENGLAND
       && propertyValue > englandFirstTimeLimit;
-    const summaryBands = [];
 
     if (isWalesFirst) {
       comment = comments.firstTimeWales;
@@ -123,6 +128,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
           tax,
           ok,
           comment,
+          taxName,
         };
       }
       // add the tax rate for the whole band and carry on
@@ -138,7 +144,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     }
   }
 
-  comment = comments.under40kUKInvestor;
+  comment = comments.under40kUKInvestor + taxName.short;
 
   return {
     propertyValue,
@@ -154,6 +160,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     tax,
     ok,
     comment,
+    taxName,
   };
 };
 

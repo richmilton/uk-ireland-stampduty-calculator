@@ -1,30 +1,35 @@
-
 const load = 3; // addtional UK property load
 const percent = String.fromCharCode(37);
+
 const countries = {
   ENGLAND: 'england',
   SCOTLAND: 'scotland',
   WALES: 'wales',
   IRELAND: 'ireland',
 };
+
 const propertyTypes = {
   COMMERCIAL: 'commercial',
   RESIDENTIAL: 'residential',
 };
+
 const buyerTypes = {
   FIRST_TIME: 'first',
   MOVING_HOUSE: 'home',
   INVESTOR: 'investor',
 };
+
 const ireland = [
   { upto: 1000000, rate: 1 },
   { upto: 'end', rate: 2 },
 ];
+
 const scotland = [{ upto: 250000, rate: 2, load },
   { upto: 325000, rate: 5, load },
   { upto: 750000, rate: 10, load },
   { upto: 'end', rate: 12, load },
 ];
+
 const sdltBands = {
   [propertyTypes.COMMERCIAL]: {
     [countries.ENGLAND]: [
@@ -45,7 +50,6 @@ const sdltBands = {
     ],
     ireland,
   },
-
   [propertyTypes.RESIDENTIAL]: {
     [buyerTypes.FIRST_TIME]: {
       [countries.ENGLAND]: {
@@ -90,10 +94,17 @@ const { limit: englandFirstTimeLimit } = sdltBands[propertyTypes.RESIDENTIAL][bu
 
 const comments = {
   firstTimeWales: 'there is no separate first time buyer exemption in Wales',
-  under40kUKInvestor: 'all transactions below 40k in UK are exempt from SDLT, LTT & LBTT',
+  under40kUKInvestor: 'all transactions below 40k in UK are exempt from ',
   UKInvestor: `${load + percent} surcharge is applied`,
   firstTimeEnglandOverLimit: `properties over ${englandFirstTimeLimit} do not attract first time buyer relief`,
   EMPTY: '',
+};
+
+const taxNames = {
+  [countries.ENGLAND]: { long: 'stamp duty land tax', short: 'SDLT' },
+  [countries.IRELAND]: { long: 'stamp duty', short: 'stamp duty' },
+  [countries.SCOTLAND]: { long: 'land and buildings tax', short: 'LBTT' },
+  [countries.WALES]: { long: 'land transaction tax', short: 'LTT' },
 };
 
 const config = {
@@ -103,6 +114,7 @@ const config = {
   buyerTypes,
   comments,
   englandFirstTimeLimit,
+  taxNames,
 };
 
 module.exports = config;
