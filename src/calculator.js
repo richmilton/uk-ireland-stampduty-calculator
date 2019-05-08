@@ -87,7 +87,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
 
     for (let idx = 0; idx < bands.length; idx += 1) {
       const {rate} = bands[idx];
-      const adjustedRate = rate + (buyerType === INVESTOR ? (bands[idx].load || 0) : 0);
+      const adjustedRate = rate + (buyerType === INVESTOR ? (bands[idx].additionalPropertySurcharge || 0) : 0);
 
       bandLimit = bands[idx].upto;
       previousBandLimit = idx > 0 ? bands[idx - 1].upto : 0;

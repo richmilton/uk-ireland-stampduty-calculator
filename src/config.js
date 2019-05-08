@@ -1,4 +1,4 @@
-const load = 3; // addtional UK property load
+const additionalPropertySurcharge = 3;
 const percent = String.fromCharCode(37);
 
 const countries = {
@@ -24,10 +24,10 @@ const ireland = [
   { upto: 'end', rate: 2 },
 ];
 
-const scotland = [{ upto: 250000, rate: 2, load },
-  { upto: 325000, rate: 5, load },
-  { upto: 750000, rate: 10, load },
-  { upto: 'end', rate: 12, load },
+const scotland = [{ upto: 250000, rate: 2, additionalPropertySurcharge },
+  { upto: 325000, rate: 5, additionalPropertySurcharge },
+  { upto: 750000, rate: 10, additionalPropertySurcharge },
+  { upto: 'end', rate: 12, additionalPropertySurcharge },
 ];
 
 const sdltBands = {
@@ -68,22 +68,22 @@ const sdltBands = {
       },
     },
     [countries.ENGLAND]: [
-      { upto: 125000, rate: 0, load },
-      { upto: 250000, rate: 2, load },
-      { upto: 925000, rate: 5, load },
-      { upto: 1500000, rate: 10, load },
-      { upto: 'end', rate: 12, load },
+      { upto: 125000, rate: 0, additionalPropertySurcharge },
+      { upto: 250000, rate: 2, additionalPropertySurcharge },
+      { upto: 925000, rate: 5, additionalPropertySurcharge },
+      { upto: 1500000, rate: 10, additionalPropertySurcharge },
+      { upto: 'end', rate: 12, additionalPropertySurcharge },
     ],
     [countries.WALES]: [
-      { upto: 180000, rate: 0, load },
-      { upto: 250000, rate: 3.5, load },
-      { upto: 400000, rate: 5, load },
-      { upto: 750000, rate: 7.5, load },
-      { upto: 1500000, rate: 10, load },
-      { upto: 'end', rate: 12, load },
+      { upto: 180000, rate: 0, additionalPropertySurcharge },
+      { upto: 250000, rate: 3.5, additionalPropertySurcharge },
+      { upto: 400000, rate: 5, additionalPropertySurcharge },
+      { upto: 750000, rate: 7.5, additionalPropertySurcharge },
+      { upto: 1500000, rate: 10, additionalPropertySurcharge },
+      { upto: 'end', rate: 12, additionalPropertySurcharge },
     ],
     [countries.SCOTLAND]: [
-      { upto: 145000, rate: 0, load },
+      { upto: 145000, rate: 0, additionalPropertySurcharge },
       ...scotland,
     ],
     ireland,
@@ -95,7 +95,7 @@ const { limit: englandFirstTimeLimit } = sdltBands[propertyTypes.RESIDENTIAL][bu
 const comments = {
   firstTimeWales: 'there is no separate first time buyer exemption in Wales',
   under40kUKInvestor: 'all transactions below 40k in UK are exempt from ',
-  UKInvestor: `${load + percent} surcharge is applied`,
+  UKInvestor: `${additionalPropertySurcharge + percent} surcharge is applied`,
   firstTimeEnglandOverLimit: `properties over ${englandFirstTimeLimit} do not attract first time buyer relief`,
   EMPTY: '',
 };
