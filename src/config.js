@@ -54,8 +54,9 @@ const sdltBands = {
     [buyerTypes.FIRST_TIME]: {
       [countries.ENGLAND]: {
         thresholds: [
-          { upto: 300000, rate: 0 },
-          { upto: 500000, rate: 5 },
+          { upto: 500000, rate: 0 },
+          // { upto: 300000, rate: 0 },
+          // { upto: 500000, rate: 5 },
         ],
         limit: 500000,
       },
@@ -68,8 +69,9 @@ const sdltBands = {
       },
     },
     [countries.ENGLAND]: [
-      { upto: 125000, rate: 0, additionalPropertySurcharge },
-      { upto: 250000, rate: 2, additionalPropertySurcharge },
+      { upto: 500000, rate: 0, additionalPropertySurcharge },
+      // { upto: 125000, rate: 0, additionalPropertySurcharge },
+      // { upto: 250000, rate: 2, additionalPropertySurcharge },
       { upto: 925000, rate: 5, additionalPropertySurcharge },
       { upto: 1500000, rate: 10, additionalPropertySurcharge },
       { upto: 'end', rate: 12, additionalPropertySurcharge },
