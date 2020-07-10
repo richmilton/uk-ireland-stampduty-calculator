@@ -1,6 +1,6 @@
 ## uk-ireland-stampduty-calculator
 
-Calculates stamp duty based on current rules. 
+Calculates stamp duty based on current rules v1.2.0 upward reflects England and NI changes introduced July 2020. 
 Handles regional/country variation for commercial and residential property,
 and includes options for first time buyers, homeowners and investors.
 
@@ -82,6 +82,8 @@ will log...
   "taxName": { "long": "stamp duty land tax", "short": "SDLT" }
 }
 ```
+
+Note: numbers and messages in the above extract are subject to change but JSON structure should be correct
 
  | parameters | values |
  | --- | --- |
