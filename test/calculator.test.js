@@ -25,7 +25,7 @@ const testValues = [
 
 describe('calculate()', () => {
   it('should return rounded down numbers for floating decimal results', () => {
-    expect(calculate(42067, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(0);
+    expect(calculate(42067, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(2524);
     expect(calculate(142066, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(4261);
     expect(calculate(542524, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(30901);
     expect(calculate(2042067, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(91603);
@@ -51,7 +51,7 @@ describe('calculate()', () => {
     expect(calculate(600000, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
     // expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
     expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
-    expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.UKInvestor);
+    expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.UKInvestorScotland);
     expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.firstTimeEnglandOverLimit);
   });
 });
@@ -201,17 +201,17 @@ describe('calculate()', () => {
 describe('calculate()', () => {
   it('should return correct values for residential scotland', () => {
     const expectedValues = [
-      0,
-      1100,
-      4600,
-      13350,
-      23350,
-      33350,
-      43350,
-      54350,
-      66350,
-      78350,
-      198350,
+      6000,
+      13100,
+      22600,
+      37350,
+      53350,
+      69350,
+      85350,
+      102350,
+      120350,
+      138350,
+      318350,
     ];
     testValues.forEach((v, idx) => {
       expect(calculate(v, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(expectedValues[idx]);

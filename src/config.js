@@ -99,7 +99,8 @@ const { limit: englandFirstTimeLimit } = sdltBands[propertyTypes.RESIDENTIAL][bu
 const comments = {
   firstTimeWales: 'there is no separate first time buyer exemption in Wales',
   under40kUKInvestor: 'all transactions below 40k in UK are exempt from ',
-  UKInvestor: `${additionalPropertySurchargeScotland + percent} surcharge is applied`,
+  UKInvestor: `${additionalPropertySurcharge + percent} surcharge is applied`,
+  UKInvestorScotland: `${additionalPropertySurchargeScotland + percent} surcharge is applied`,
   firstTimeEnglandOverLimit: `properties over ${englandFirstTimeLimit} do not attract first time buyer relief`,
   EMPTY: '',
 };

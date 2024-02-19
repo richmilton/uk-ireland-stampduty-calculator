@@ -22,6 +22,7 @@ const {
   englandFirstTimeLimit,
   taxNames,
 } = require('./config');
+const { countries } = require('../index')
 
 const ok = 'ok';
 
@@ -68,7 +69,7 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
     if (isWalesFirst) {
       comment = comments.firstTimeWales;
     } else if (isLoaded) {
-      comment = comments.UKInvestor;
+      comment = country === countries.SCOTLAND ? comments.UKInvestorScotland : comments.UKInvestor;
     } else if (isEnglandFirstOverLimit) {
       comment = comments.firstTimeEnglandOverLimit;
     }
@@ -87,7 +88,8 @@ const calculate = (propertyValue, propertyType, country, buyerType) => {
 
     for (let idx = 0; idx < bands.length; idx += 1) {
       const {rate} = bands[idx];
-      const adjustedRate = rate + (buyerType === INVESTOR ? (bands[idx].additionalPropertySurcharge || 0) : 0);
+      const surcharge = country === countries.SCOTLAND ? bands[idx].additionalPropertySurchargeScotland : bands[idx].additionalPropertySurcharge
+      const adjustedRate = rate + (buyerType === INVESTOR ? (surcharge || 0) : 0);
 
       bandLimit = bands[idx].upto;
       previousBandLimit = idx > 0 ? bands[idx - 1].upto : 0;
