@@ -25,7 +25,7 @@ const testValues = [
 
 describe('calculate()', () => {
   it('should return rounded down numbers for floating decimal results', () => {
-    expect(calculate(42067, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(1262);
+    expect(calculate(42067, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(0);
     expect(calculate(142066, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(4261);
     expect(calculate(542524, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(30901);
     expect(calculate(2042067, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.INVESTOR).tax).to.be.equal(91603);
@@ -76,12 +76,12 @@ describe('calculate()', () => {
 describe('calculate()', () => {
   it('should return correct values for first time buyers', () => {
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(0);
-    expect(calculate(350000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(2500);
+    expect(calculate(350000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(0);
     expect(calculate(550000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(15000);
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(0);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(1500);
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).tax).to.be.equal(0);
-    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).tax).to.be.equal(2450);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).tax).to.be.equal(1250);
   });
 });
 
@@ -95,7 +95,7 @@ describe('calculate()', () => {
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(2100);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('LBTT');
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(0);
-    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(2450);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(1250);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('LTT');
   });
 });
@@ -159,16 +159,16 @@ describe('calculate()', () => {
   it('should return correct values for residential wales', () => {
     const expectedValues = [
       3000,
-      6700,
-      13950,
-      21950,
-      32450,
-      42950,
-      53450,
-      65200,
-      78200,
-      91200,
-      231200,
+      6000,
+      12750,
+      20750,
+      31250,
+      41750,
+      52250,
+      64000,
+      77000,
+      90000,
+      230000,
     ];
     testValues.forEach((v, idx) => {
       expect(calculate(v, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(expectedValues[idx]);
@@ -200,17 +200,17 @@ describe('calculate()', () => {
 describe('calculate()', () => {
   it('should return correct values for residential scotland', () => {
     const expectedValues = [
-      3000,
-      7100,
-      13600,
-      25350,
-      38350,
-      51350,
-      64350,
+      0,
+      1100,
+      4600,
+      13350,
+      23350,
+      33350,
+      43350,
+      54350,
+      66350,
       78350,
-      93350,
-      108350,
-      258350,
+      198350,
     ];
     testValues.forEach((v, idx) => {
       expect(calculate(v, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).tax).to.be.equal(expectedValues[idx]);

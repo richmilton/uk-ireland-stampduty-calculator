@@ -1,4 +1,5 @@
 const additionalPropertySurcharge = 3;
+const additionalPropertySurchargeScotland = 5;
 const percent = String.fromCharCode(37);
 
 const countries = {
@@ -24,10 +25,11 @@ const ireland = [
   { upto: 'end', rate: 2 },
 ];
 
-const scotland = [{ upto: 250000, rate: 2, additionalPropertySurcharge },
-  { upto: 325000, rate: 5, additionalPropertySurcharge },
-  { upto: 750000, rate: 10, additionalPropertySurcharge },
-  { upto: 'end', rate: 12, additionalPropertySurcharge },
+const scotland = [
+  { upto: 250000, rate: 2, additionalPropertySurchargeScotland },
+  { upto: 325000, rate: 5, additionalPropertySurchargeScotland },
+  { upto: 750000, rate: 10, additionalPropertySurchargeScotland },
+  { upto: 'end', rate: 12, additionalPropertySurchargeScotland },
 ];
 
 const sdltBands = {
@@ -55,8 +57,8 @@ const sdltBands = {
       [countries.ENGLAND]: {
         thresholds: [
           // { upto: 500000, rate: 0 },
-          { upto: 300000, rate: 0 },
-          { upto: 500000, rate: 5 },
+          { upto: 425000, rate: 0 },
+          { upto: 625000, rate: 5 },
         ],
         limit: 500000,
       },
@@ -77,15 +79,15 @@ const sdltBands = {
       { upto: 'end', rate: 12, additionalPropertySurcharge },
     ],
     [countries.WALES]: [
-      { upto: 180000, rate: 0, additionalPropertySurcharge },
-      { upto: 250000, rate: 3.5, additionalPropertySurcharge },
+      { upto: 225000, rate: 0, additionalPropertySurcharge },
+      // { upto: 250000, rate: 3.5, additionalPropertySurcharge },
       { upto: 400000, rate: 5, additionalPropertySurcharge },
       { upto: 750000, rate: 7.5, additionalPropertySurcharge },
       { upto: 1500000, rate: 10, additionalPropertySurcharge },
       { upto: 'end', rate: 12, additionalPropertySurcharge },
     ],
     [countries.SCOTLAND]: [
-      { upto: 145000, rate: 0, additionalPropertySurcharge },
+      { upto: 145000, rate: 0, additionalPropertySurchargeScotland },
       ...scotland,
     ],
     ireland,
