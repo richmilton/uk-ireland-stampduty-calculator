@@ -1,5 +1,5 @@
 const additionalPropertySurcharge = 3;
-const additionalPropertySurchargeScotland = 5;
+const additionalPropertySurchargeScotland = 6;
 const percent = String.fromCharCode(37);
 
 const countries = {
@@ -81,7 +81,7 @@ const sdltBands = {
     [countries.WALES]: [
       { upto: 225000, rate: 0, additionalPropertySurcharge },
       // { upto: 250000, rate: 3.5, additionalPropertySurcharge },
-      { upto: 400000, rate: 5, additionalPropertySurcharge },
+      { upto: 400000, rate: 6, additionalPropertySurcharge },
       { upto: 750000, rate: 7.5, additionalPropertySurcharge },
       { upto: 1500000, rate: 10, additionalPropertySurcharge },
       { upto: 'end', rate: 12, additionalPropertySurcharge },
@@ -99,7 +99,7 @@ const { limit: englandFirstTimeLimit } = sdltBands[propertyTypes.RESIDENTIAL][bu
 const comments = {
   firstTimeWales: 'there is no separate first time buyer exemption in Wales',
   under40kUKInvestor: 'all transactions below 40k in UK are exempt from ',
-  UKInvestor: `${additionalPropertySurcharge + percent} surcharge is applied`,
+  UKInvestor: `${additionalPropertySurchargeScotland + percent} surcharge is applied`,
   firstTimeEnglandOverLimit: `properties over ${englandFirstTimeLimit} do not attract first time buyer relief`,
   EMPTY: '',
 };

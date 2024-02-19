@@ -51,6 +51,7 @@ describe('calculate()', () => {
     expect(calculate(600000, propertyTypes.COMMERCIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
     // expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
     expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.EMPTY);
+    expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.INVESTOR).comment).to.be.equal(comments.UKInvestor);
     expect(calculate(600000, propertyTypes.RESIDENTIAL, countries.ENGLAND, buyerTypes.FIRST_TIME).comment).to.be.equal(comments.firstTimeEnglandOverLimit);
   });
 });
@@ -81,7 +82,7 @@ describe('calculate()', () => {
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(0);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.FIRST_TIME).tax).to.be.equal(1500);
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).tax).to.be.equal(0);
-    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).tax).to.be.equal(1250);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.FIRST_TIME).tax).to.be.equal(1500);
   });
 });
 
@@ -95,7 +96,7 @@ describe('calculate()', () => {
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.MOVING_HOUSE).tax).to.be.equal(2100);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.SCOTLAND, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('LBTT');
     expect(calculate(170000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(0);
-    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(1250);
+    expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).tax).to.be.equal(1500);
     expect(calculate(250000, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.MOVING_HOUSE).taxName.short).to.be.equal('LTT');
   });
 });
@@ -160,15 +161,15 @@ describe('calculate()', () => {
     const expectedValues = [
       3000,
       6000,
-      12750,
-      20750,
-      31250,
-      41750,
-      52250,
-      64000,
-      77000,
-      90000,
-      230000,
+      13500,
+      22500,
+      33000,
+      43500,
+      54000,
+      65750,
+      78750,
+      91750,
+      231750,
     ];
     testValues.forEach((v, idx) => {
       expect(calculate(v, propertyTypes.RESIDENTIAL, countries.WALES, buyerTypes.INVESTOR).tax).to.be.equal(expectedValues[idx]);
